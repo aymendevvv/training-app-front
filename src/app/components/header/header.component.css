@@ -1,0 +1,171 @@
+::ng-deep .lower-header{
+  position :fixed ; 
+  width: 100%;
+}
+
+::ng-deep .p-element.sticky {
+  padding: 20px !important; 
+  z-index: 1000;
+}
+
+::ng-deep .p-toolbar.lower-header{
+  border: 0px;
+  border-radius: 0px;
+  height: 80px;
+}
+::ng-deep .p-toolbar.sticky{
+  border: 0px;
+  border-radius: 20px;
+  display: none !important ; 
+
+}
+nav{
+  background-color: var(--gray-400);
+  height: 80px; 
+
+
+}
+
+img{
+  height: 40px; 
+
+}
+
+
+
+
+/* 
+::ng-deep .p-menubar { 
+  border: 1px green; 
+  border-style: solid; 
+  border-radius: 20px; 
+  box-shadow: 0px 4px 6px 0px green; 
+  right: 0px;
+
+
+}  */
+
+.p-input-icon-left{
+    display: inline-flex;
+    position: relative;
+  }
+
+
+
+.p-input-switch-container {
+    display: inline-flex;
+    vertical-align: middle; /* Aligns the switch vertically with the search input */
+    margin-left: 10px; /* Adjust the margin as needed */
+}
+
+#upper-header{
+
+  height: 25px;
+  background-color: var(--gray-300);
+  
+  transition: 0.3s linear;
+}
+
+#upper-header.hide{
+  display: none;
+  height: 0px;
+}
+
+
+
+
+.hide {
+  opacity: 0; /* Hide the div when scrolled down */
+}
+nav{
+  transition: 0.6s;
+  
+  height: 80px;
+  margin-bottom: 80px;
+}
+
+.header-btn {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color:var(--purple-800); /* Button background color */
+  color: #fff; /* Button text color */
+  border: 1px solid #8B5CF6 ; /* Button border */
+  border-bottom-left-radius: 15px; /* Rounded bottom-left corner */
+  border-bottom-right-radius: 15px; /* Rounded bottom-right corner */
+  cursor: pointer; /* Show pointer cursor on hover */
+  text-align: center;
+  text-decoration: none;
+  transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+  margin-bottom: 10px;
+  margin-right: 20px;
+}
+
+.header-btn:hover {
+  background-color: #6844bb; /* Button background color on hover */
+  border-color: #6844bb; /* Button border color on hover */
+}
+
+a {
+  text-decoration: none ;
+  color: #fff;
+  transition: 0.3s;
+}
+a:hover{
+  color: var(--purple-300);
+}
+
+.vertical-line {
+  width: 5px; /* Width of the vertical line */
+  height: 80% ;
+  background-color: #ffffff; /* Color of the vertical line */
+  margin: 0 10px; /* Margin to create space between links */
+  border-radius: 3px;
+
+}
+
+::ng-deep .p-iconField {
+  width: 100px ;
+}
+
+
+::ng-deep .p-iconField.expanded > span > input {
+  width: 200px ;
+  display: inline;
+}
+
+input[type=search]{
+  height: 30px;
+  outline: none;
+  border: none;
+  display: none; 
+  border-radius: 40%;
+  
+  transition: 2s;
+  animation-delay: 1s;
+  width: 90%;
+
+}
+
+.search.active input[type=search] {
+  display: inline-block;
+}
+
+.search{
+  width: 35px;
+  height: 35px;
+  background: #fff;
+  transition: 0.3s ;
+  display: flex; /* Use flexbox */
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+  border-radius: 20px;
+}
+
+.search.active {
+
+  border-radius: 20px;
+
+  width: 200px;
+  height: 35px;
+}
+

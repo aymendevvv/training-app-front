@@ -1,0 +1,19 @@
+::ng-deep .p-toolbar.footer {
+    width: 100%;
+    display: flex;
+}
+
+::ng-deep .p-toolbar.footer .p-toolbar-group-left{
+    flex: 1 ;
+}
+::ng-deep .p-toolbar.footer .p-toolbar-group-center {
+    align-items: center;
+    justify-content: space-around;
+    flex: 3 ;
+}
+::ng-deep .p-toolbar.footer .p-toolbar-group-right {
+    align-items: center;
+    justify-content: space-around;
+    flex: 1 ;
+
+}

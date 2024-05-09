@@ -1,0 +1,40 @@
+<div class="card">
+    <p-toolbar 
+        styleClass="bg-gray-900 shadow-2 footer" 
+        [style]="{ }">
+        <ng-template pTemplate="start">
+            <div class="flex-column justify-content-center align-items-center gap-3 " >
+
+                <img [style]="{'height': '50px' ,'flex':'2'}" src="assets/logo-placeholder.png" />
+                <p> our mission is to help you start your career</p>
+                
+            </div>
+        </ng-template>
+        <ng-template pTemplate="center">
+            <div class="flex-column  gap-3" >
+                <div class="flex justify-content-center flex-wrap ">
+                    <button class="p-link inline-flex justify-content-center align-items-center text-white h-3rem w-3rem border-circle hover:bg-white-alpha-10 transition-all transition-duration-200">
+                        <i class="pi pi-home text-2xl"></i>
+                    </button>
+                    <button class="p-link inline-flex justify-content-center align-items-center text-white h-3rem w-3rem border-circle hover:bg-white-alpha-10 transition-all transition-duration-200">
+                        <i class="pi pi-user text-2xl"></i>
+                    </button>
+                    <button class="p-link inline-flex justify-content-center align-items-center text-white h-3rem w-3rem border-circle hover:bg-white-alpha-10 transition-all transition-duration-200">
+                        <i class="pi pi-search text-2xl"></i>
+                    </button>
+                </div>
+
+                <p style="color: #fff;">&copy; All Rights Reserved</p>
+            </div>
+        </ng-template>
+        <ng-template pTemplate="end">
+            <div class="flex gap-2"  >
+                
+                <i class="pi pi-facebook" style="font-size: 2rem"></i>
+                <i class="pi pi-twitter" style="font-size: 2rem"></i>
+                <i class="pi pi-linkedin" style="font-size: 2rem"></i>
+                <i class="pi pi-github" style="font-size: 2rem"></i>
+            </div>
+        </ng-template>
+    </p-toolbar>
+    </div>
