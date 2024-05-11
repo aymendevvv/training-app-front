@@ -17,3 +17,8 @@
     flex: 1 ;
 
 }
+
+.custom-footer {
+    margin: 50px 0 0  0;
+    padding: 0;
+}

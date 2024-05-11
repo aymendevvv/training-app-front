@@ -5,8 +5,10 @@
 
 
 
-<p-card  [header]="headerTitle" [style]="{ 'width':'360px' ,  'overflow-y': 'auto', 'overflow-x': 'hidden', 
-'max-height': '80vh','min-height':'250px'}"  >
+<p-card  [header]="headerTitle" 
+         [style]="{ 'width':'360px' ,  'overflow-y': 'auto', 'overflow-x': 'auto', 'max-height': '80vh','min-height':'250px' , 'white-space':'nowrap'}" 
+          
+         >
 
      <div *ngIf="!selectedRole">
                
@@ -19,15 +21,15 @@
   
      </div>
 
-     <form [formGroup]="studentRegisterForm" (ngSubmit)="register()">
+     <form [formGroup]="studentRegisterForm" (ngSubmit)="register()" >
 
 
-          <div *ngIf="selectedRole ==='student'">
+          <div *ngIf="selectedRole ==='student' && !message"   fxLayout="column" fxLayoutAlign="space-around stretch" style="white-space: nowrap ;">
 
-               <span style="font-size: 1.5rem ; margin :20px"   fxLayoutAlign="center" class="pi pi-arrow-circle-left" (click)="pickRole(undefined)"></span>
+               <span style="font-size: 1.5rem ; margin :20px" fxLayoutAlign="center center"   class="pi pi-arrow-circle-left" (click)="pickRole(undefined)"></span>
                <!-- fist name -->
                <div class="field">
-                    <p-floatLabel>
+                    <p-floatLabel  >
                          <input pInputText id="fistname" class="w-full" formControlName="firstName"/>
                          <label for="fistname">First name</label>
                      </p-floatLabel>
@@ -57,8 +59,8 @@
                      </p-floatLabel> -->
                      <p-floatLabel>
                           
-                          <p-calendar id="calendar"  formControlName="dateOfBirth"  [style]="{'width':'100%'}" [inputStyle]="{'width':'100px'}" />
-                          <label for="calendar">Calendar</label>
+                          <p-calendar id="calendar"  formControlName="dateOfBirth"   [style]="{'width':'100%' }" [inputStyle]="{'width':'100%'}" />
+                          <label for="calendar">Birth date</label>
 
                      </p-floatLabel>
                      <span class="p-float-label">
@@ -129,8 +131,11 @@
 
                </div>
 
-
-          </div>
+                    <p-button  type="submit" fxLayoutAlign="center center">submit</p-button>
+               </div>
+               <div *ngIf="message">
+                    <p>{{message}}</p>
+               </div>
 
 
 
@@ -139,7 +144,12 @@
      <form [formGroup]="companyRegisterForm">
           <div *ngIf="selectedRole ==='company'">
                <form [formGroup]="companyRegisterForm">
-                    <p-calendar formControlName="date" />
+                    
+                          
+                    <p-calendar id="calendar"  formControlName="date"   [style]="{'width':'50%' }" [inputStyle]="{'width':'100px'}" />
+                         
+
+                    
                 </form>
           </div>
      </form>

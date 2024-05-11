@@ -1,0 +1,14 @@
+.teaser-title {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+::ng-deep .p-chip {
+    margin: 0 0.5rem;
+}
+
+h1 , h3 {
+    font-family: "Rubik", sans-serif;
+  }
+  

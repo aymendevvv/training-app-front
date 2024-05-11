@@ -25,9 +25,15 @@
     
     position: relative;
 }
-p-card{
-    overflow: scroll;
-    width: vp ;
+
+
+
+
+
+::ng-deep .ui-datepicker .ui-datepicker-group {
+    background-color: cadetblue;
+    }
+
+::ng-deep .p-calendar-w-btn{
+    background-color: cadetblue;
 }
-
-

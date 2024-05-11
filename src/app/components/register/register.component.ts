@@ -18,16 +18,25 @@ import { IconFieldModule } from 'primeng/iconfield';
 import { InputIconModule } from 'primeng/inputicon';
 import { profile } from 'console';
 import { BrowserModule } from '@angular/platform-browser';
+import { UserService } from '../../../services/user.service';
+import { User } from '../../../models/user.model';
+import { MessageService } from 'primeng/api';
+import { ToastModule } from 'primeng/toast';
 
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [ CardModule,InputTextModule, ReactiveFormsModule,ButtonModule, RouterModule, CommonModule , FormsModule , IconFieldModule , FlexLayoutModule  , FloatLabelModule , CalendarModule],
+  imports: [  CardModule,InputTextModule, ReactiveFormsModule,ButtonModule, RouterModule, CommonModule , FormsModule , IconFieldModule , FlexLayoutModule  , FloatLabelModule , CalendarModule],
+  
   templateUrl: './register.component.html',
   styleUrl: './register.component.css'
 })
 export class RegisterComponent {
+  
+  constructor(private fb:FormBuilder , private userService:UserService){
+  }
 
+  message: string | undefined = undefined ;
   selectedRole ?: string  ; 
   headerTitle :string = "Register as : " ;
 
@@ -55,8 +64,6 @@ export class RegisterComponent {
   companyRegisterForm = this.fb.group({ 
     date : [undefined,[Validators.required]], 
   });
-  constructor(private fb:FormBuilder){
-  }
   pickRole(role:string|undefined):void{
     this.selectedRole =  role ;
     if(role === 'teacher'){
@@ -106,7 +113,37 @@ export class RegisterComponent {
   get profile() {
     return this.studentRegisterForm.controls['profile'];
   }
-  register(){
-    
-  }
-}
+
+  createUserFromForm(): User {
+        let formValues = this.studentRegisterForm.value;
+        let user:User  = {
+          user_id: 0 , 
+          username: formValues.username || null,
+          user_password: formValues.password || null, 
+          user_join_date: new Date() , 
+          user_status: 'ACTIVE',
+          user_phone_number: formValues.phoneNumber || null, 
+          email: formValues.email || null, 
+          notifications: [], // replace with actual value
+          alerts: [],
+        };
+        return user;
+      }
+      
+
+      register(){
+        if(this.studentRegisterForm.valid){
+          let user = this.createUserFromForm();
+          this.userService.save_user(user).subscribe((status: number) => {
+            
+            console.log(status);
+            if(status == 200){
+              this.message = "successfully registered" ;
+            }else{
+              this.message = "failed to register" ; 
+            }
+          });
+        }
+        console.log('registered');
+      }
+    }
