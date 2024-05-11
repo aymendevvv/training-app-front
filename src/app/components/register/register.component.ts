@@ -62,23 +62,36 @@ export class RegisterComponent {
 
   });
   companyRegisterForm = this.fb.group({ 
-    date : [undefined,[Validators.required]], 
+    
+    companyName : [undefined , [Validators.required]],
+    password:[undefined , Validators.required   ] , 
+    passwordAgain:[undefined, Validators.required],
+    email: [undefined , Validators.email],
+    phoneNumber:[undefined], 
+    profile: null 
   });
+
   pickRole(role:string|undefined):void{
     this.selectedRole =  role ;
-    if(role === 'teacher'){
-      this.headerTitle = "Register as Teacher" ;
+    if(role === 'company'){
+      this.headerTitle = "Register as a Company" ;
     }else if(role === 'student'){  
-      this.headerTitle = "Register as Student" ;
+      this.headerTitle = "Register as a Student" ;
     }else{
       this.headerTitle = "Register as  :" ;
+      this.message = undefined  ; 
     }
   }
+
+  get companyName(){
+    return this.companyRegisterForm.controls['companyName'];
+  }
   
+
+
   get username(){
     return this.studentRegisterForm.controls['username'];
   }
-   
 
   get password(){
     return this.studentRegisterForm.controls['password'];

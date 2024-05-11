@@ -15,13 +15,14 @@ import { CascadeSelectModule} from 'primeng/cascadeselect';
 import { AvatarModule } from 'primeng/avatar';
 import { IconFieldModule } from 'primeng/iconfield';
 import { InputIconModule } from 'primeng/inputicon';
+import { RouterModule } from '@angular/router';
 
  
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [ InputIconModule,  IconFieldModule ,  ToolbarModule , AvatarModule , SharedModule ,  CascadeSelectModule ,  StyleClassModule ,  CommonModule , FormsModule,ToolbarModule,ButtonModule, InputSwitchModule, InputTextModule, MenubarModule , FlexLayoutModule ],
+  imports: [ RouterModule ,  InputIconModule,  IconFieldModule ,  ToolbarModule , AvatarModule , SharedModule ,  CascadeSelectModule ,  StyleClassModule ,  CommonModule , FormsModule,ToolbarModule,ButtonModule, InputSwitchModule, InputTextModule, MenubarModule , FlexLayoutModule ],
   templateUrl: './header.component.html',
   styleUrl: './header.component.css'
 })

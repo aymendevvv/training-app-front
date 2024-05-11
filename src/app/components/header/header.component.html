@@ -5,7 +5,7 @@
         <div class="vertical-line"></div>
         <a href="">for companies</a>
         <div class="header-btn"  >
-            <a href="">login</a>
+            <a href="http://localhost:4200/register">login</a>
         </div>
     
     </div>
@@ -14,9 +14,13 @@
     [ngClass]="{'sticky': isScrolled}" 
     styleClass="bg-gray-400  lower-header" 
     [style]="{ }">
+    
     <ng-template pTemplate="start">
-        <img src="assets/logo-placeholder.png" />
-        <h1 [style]="{'color':'#fff' , 'margin':'0px 0px 0px 10px'}">trainoa</h1>
+        <a href="http://localhost:4200/home" class="logo-link">
+                
+            <img src="assets/logo-placeholder.png" style="display: inline;"/>
+            <h1 [style]="{'color':'#fff' , 'margin':'0px 0px 0px 10px' , 'display':'inline'}">trainoa</h1>
+        </a>
     </ng-template>
     
     <ng-template pTemplate="end">
