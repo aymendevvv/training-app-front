@@ -1,0 +1,12 @@
+.search-item{
+    height: 150px;
+    word-wrap: break-word;
+}
+
+
+.search-item img {
+    height: 100px;
+    width: 100px;
+
+
+}

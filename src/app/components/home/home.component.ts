@@ -11,6 +11,7 @@ import { SplitButtonModule } from 'primeng/splitbutton';
 import { InputTextModule } from 'primeng/inputtext';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { CardModule } from 'primeng/card';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -22,7 +23,18 @@ import { CardModule } from 'primeng/card';
 })
 export class HomeComponent implements OnInit{
 
-  items: MenuItem[] | undefined;
+    constructor(private route:Router){
+
+    }
+    
+    items: MenuItem[] | undefined;
+
+
+    submitSearch(val:string){
+        console.log(val);
+        this.route.navigate(['/search',val]);
+        
+    }
 
     ngOnInit() {
         this.items = [

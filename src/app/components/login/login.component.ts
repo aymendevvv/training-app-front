@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Output , EventEmitter } from '@angular/core';
 import { CardModule } from 'primeng/card';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule} from 'primeng/inputtext';
@@ -20,10 +20,14 @@ import { AuthService} from '../../services/authentication/auth.service';
 })
 export class LoginComponent {
 
+  @Output() loggedIn: EventEmitter<boolean> = new EventEmitter<boolean>();
+  @Output() loggeduser: EventEmitter<string>  = new EventEmitter<string>();
+
+
   loginError: string = '' ; 
 
   loginForm = this.fb.group({
-    email:['', [Validators.required, Validators.email]],
+    email:['', [Validators.required]],
     password:['', Validators.required]
   });
   constructor(
@@ -53,7 +57,18 @@ export class LoginComponent {
     const password = this.loginForm.value.password;
 
     if (username && password) {
-      this.authService.login(username, password).subscribe(res => {console.log(res)});
+
+      this.authService.login(username, password).subscribe(
+        res => {
+          console.log(res);
+          this.loggeduser.emit("aymen");
+          this.loggedIn.emit(true);
+          console.log("event emmited ");
+
+        
+        
+        });
+      
     } else {
       console.error('Username or password is missing');
     }

@@ -3,6 +3,7 @@ import { RegisterComponent } from './components/register/register.component';
 import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
 import { SearchComponent } from './components/search/search.component';
+import { ProfileComponent } from './components/profile/profile.component';
 
 export const routes: Routes = [
     {
@@ -18,8 +19,12 @@ export const routes: Routes = [
         component:HomeComponent
       },
       {
-        path:"search",
+        path:"search/:query",
         component:SearchComponent
+      },
+      {
+        path:"profile",
+        component:ProfileComponent
       },
 
       {

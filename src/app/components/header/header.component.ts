@@ -15,7 +15,8 @@ import { CascadeSelectModule} from 'primeng/cascadeselect';
 import { AvatarModule } from 'primeng/avatar';
 import { IconFieldModule } from 'primeng/iconfield';
 import { InputIconModule } from 'primeng/inputicon';
-import { RouterModule } from '@angular/router';
+import { NavigationEnd, Router, RouterModule , Event as NavigationEvent, ActivatedRoute } from '@angular/router';
+import { filter, map } from 'rxjs';
 
  
 
@@ -27,6 +28,8 @@ import { RouterModule } from '@angular/router';
   styleUrl: './header.component.css'
 })
 export class HeaderComponent implements OnInit{
+
+    isHomePage : boolean = false ;
 
     countries: any[] | undefined;
 
@@ -55,12 +58,24 @@ export class HeaderComponent implements OnInit{
 
   
 
-  constructor(@Inject(ThemeService) private themeService: ThemeService){
+  constructor(@Inject(ThemeService) private themeService: ThemeService , private router:Router , private route : ActivatedRoute){
     
   }
   
 
   ngOnInit(): void {
+    
+    this.router.events.pipe(
+        filter(event => event instanceof NavigationEnd),
+        map(() => this.route)
+      ).subscribe(route => {
+        // Get the full URL including dynamic segments
+        const url = this.router.routerState.snapshot.url;
+        // Check if the current URL is the home page URL
+        this.isHomePage = (url === '/home');
+        console.log(this.isHomePage)
+      });
+    
 
     this.countries = [
         {

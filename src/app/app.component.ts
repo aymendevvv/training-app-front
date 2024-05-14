@@ -5,12 +5,13 @@ import { HttpClientModule } from '@angular/common/http';
 import { HomeComponent } from './components/home/home.component';
 import { ScrollDirective } from './directives/scroll.directive';
 import { FooterComponent } from './components/footer/footer.component';
+import { SearchComponent } from './components/search/search.component';
 
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [ FooterComponent,  RouterOutlet, HeaderComponent , HttpClientModule , HomeComponent , ScrollDirective],
+  imports: [SearchComponent ,  FooterComponent,  RouterOutlet, HeaderComponent , HttpClientModule , HomeComponent , ScrollDirective],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

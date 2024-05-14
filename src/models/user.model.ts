@@ -3,7 +3,7 @@ export class User {
     constructor(){
         this.user_join_date = new Date();
     }
-    
+
     user_id!: number;
     username!: string | null;
     user_password!: string | null;
