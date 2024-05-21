@@ -18,6 +18,8 @@ export class AuthService {
     );
   }
 
+  
+
   public getlogginedInStatus(){
     return this.loggedInStatus;
   }

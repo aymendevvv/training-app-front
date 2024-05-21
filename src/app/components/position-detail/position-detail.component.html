@@ -1,0 +1,60 @@
+<div class="container-fluid rounded p-5" style="background-color: white;" >
+
+    <div class="row">
+        <h2> current id {{positionId}}</h2>
+    </div>
+    <div class="row">
+        <!-- position details -->
+        <div class="col-md-8" >
+            <h2>{{T_position?.position_description}}</h2>
+            <h4>{{T_position?.position_description}}</h4>
+            
+            <p-toolbar styleClass="details-toolbar">
+                <div class="p-toolbar-group-start">
+                    <p-button label="Apply now"  class="mr-2"/>
+                    <p-splitButton [disabled]="true" label="more options"  [model]="options" />
+                </div>
+                <div class="p-toolbar-group-center">
+                    
+                </div>
+                <div class="p-toolbar-group-end">
+                    <p-button icon="pi pi-bookmark" class="p-button-warning" />
+                </div>
+            </p-toolbar>
+
+            <h4>title again </h4>
+
+            <img src="assets/bg.jpg" alt="">
+
+            <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum reiciendis voluptate molestias nobis dignissimos eius libero officiis possimus labore eligendi sunt numquam iste sapiente, aperiam cum. Tenetur amet quam veniam.
+            </p>
+
+        </div>
+        <!-- the infos cards  -->
+        <div class="col-md-4" >
+            <p-card  header=" General informations">
+                <div class="d-grid gap-4">
+                    <p>Location: </p>
+                    <p>starting date: </p>
+                    <p>duration: </p>
+                    <p>required level: </p>
+                    <p>Company: </p>
+                </div>
+            </p-card>
+    </div>
+
+    </div>
+
+    <div class="row p-5 justify-content-center contant-infos">
+        <p-fieldset legend="  - contact informations" >
+            <p class="m-0">
+                Lorem ipsum dolor sit amet...
+            </p>
+        </p-fieldset>
+
+
+    </div>
+
+
+  </div>

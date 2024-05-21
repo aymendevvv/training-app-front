@@ -43,3 +43,7 @@ body, html{
     z-index: -1; 
     opacity: 0.2;
 }
+
+::ng-deep .ui-button.rounded-button {
+  border-radius: 2rem;
+}

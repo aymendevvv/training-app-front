@@ -7,6 +7,7 @@ import { PanelModule } from 'primeng/panel';
 
 import { FieldsetModule } from 'primeng/fieldset';
 import { SplitButtonModule } from 'primeng/splitbutton';
+import { FlexLayoutServerModule } from '@angular/flex-layout/server';
 
 import { InputTextModule } from 'primeng/inputtext';
 import { FlexLayoutModule } from '@angular/flex-layout';
@@ -17,7 +18,7 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [  CardModule ,  FieldsetModule , PanelModule ,  ChipModule ,   ToolbarModule, ButtonModule, SplitButtonModule, InputTextModule ,FlexLayoutModule],
+  imports: [  CardModule ,  FieldsetModule , PanelModule ,  ChipModule ,   ToolbarModule, ButtonModule, SplitButtonModule, InputTextModule ,FlexLayoutModule , FlexLayoutServerModule ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })

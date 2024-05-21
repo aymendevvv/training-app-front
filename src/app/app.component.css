@@ -17,3 +17,6 @@
     width: 100% ; 
 }
 
+::ng-deep .p-button{
+    border-radius: 1.1rem;
+}

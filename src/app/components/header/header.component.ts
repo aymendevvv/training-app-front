@@ -17,13 +17,14 @@ import { IconFieldModule } from 'primeng/iconfield';
 import { InputIconModule } from 'primeng/inputicon';
 import { NavigationEnd, Router, RouterModule , Event as NavigationEvent, ActivatedRoute } from '@angular/router';
 import { filter, map } from 'rxjs';
+import { FlexLayoutServerModule } from '@angular/flex-layout/server';
 
  
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [ RouterModule ,  InputIconModule,  IconFieldModule ,  ToolbarModule , AvatarModule , SharedModule ,  CascadeSelectModule ,  StyleClassModule ,  CommonModule , FormsModule,ToolbarModule,ButtonModule, InputSwitchModule, InputTextModule, MenubarModule , FlexLayoutModule ],
+  imports: [ RouterModule ,  InputIconModule,  IconFieldModule ,  ToolbarModule , AvatarModule , SharedModule ,  CascadeSelectModule ,  StyleClassModule ,  CommonModule , FormsModule,ToolbarModule,ButtonModule, InputSwitchModule, InputTextModule, MenubarModule , FlexLayoutModule , FlexLayoutServerModule],
   templateUrl: './header.component.html',
   styleUrl: './header.component.css'
 })
