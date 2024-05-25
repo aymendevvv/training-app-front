@@ -13,6 +13,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { CardModule } from 'primeng/card';
 import { Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
 
 
 @Component({
@@ -24,8 +25,8 @@ import { Router } from '@angular/router';
 })
 export class HomeComponent implements OnInit{
 
-    constructor(private route:Router){
-
+    constructor(private route:Router  , private http:HttpClient){
+        this.http.get('http://localhost:8080/api/v1/positions').subscribe((data) => console.log(data));
     }
     
     items: MenuItem[] | undefined;

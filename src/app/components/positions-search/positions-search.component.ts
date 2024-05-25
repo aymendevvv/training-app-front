@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { TrainingPosition } from '../../interfaces/training-position';
-import { TrainingPositionsService } from '../../../services/training-positions.service';
+import { TrainingPositionsService } from '../../services/positions/training-positions.service';
 import { SliderModule } from 'primeng/slider';
 import { CardModule } from 'primeng/card';
 import { InputTextModule } from 'primeng/inputtext';
@@ -25,7 +25,7 @@ import { RouterModule } from '@angular/router';
 })
 export class PositionsSearchComponent {
   constructor(private T_positionsService: TrainingPositionsService){
-    this.T_positionsService.getAllTrainingPositions().then((data) => (this.T_positions = data.slice(0, 5)));
+    this.T_positionsService.getAllTrainingPositions().subscribe((data) => (this.T_positions = data.slice(0, 5)));
   }
 
   date !: Date ;

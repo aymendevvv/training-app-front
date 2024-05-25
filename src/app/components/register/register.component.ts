@@ -18,7 +18,7 @@ import { IconFieldModule } from 'primeng/iconfield';
 import { InputIconModule } from 'primeng/inputicon';
 import { profile } from 'console';
 import { BrowserModule } from '@angular/platform-browser';
-import { UserService } from '../../../services/user.service';
+import { UserService } from '../../services/user/user.service';
 import { User } from '../../../models/user.model';
 import { MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';

@@ -8,7 +8,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import { FieldsetModule } from 'primeng/fieldset';
 import { ActivatedRoute } from '@angular/router';
 import { TrainingPosition } from '../../interfaces/training-position';
-import { TrainingPositionsService } from '../../../services/training-positions.service';
+import { TrainingPositionsService } from '../../services/positions/training-positions.service';
 
 @Component({
   selector: 'app-position-detail',
@@ -24,7 +24,7 @@ export class PositionDetailComponent implements OnInit {
 
   constructor(private route: ActivatedRoute , private T_positionsService: TrainingPositionsService) { 
     this.positionId = this.route.snapshot.params['id'];
-    this.T_positionsService.getTrainingPositionById(this.positionId).then(res => { this.T_position = res});
+    this.T_positionsService.getTrainingPositionById(this.positionId).subscribe(res => { this.T_position = res});
 
   }
 

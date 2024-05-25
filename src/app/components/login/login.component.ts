@@ -63,7 +63,6 @@ export class LoginComponent {
           console.log(res);
           this.loggeduser.emit("aymen");
           this.loggedIn.emit(true);
-          console.log("event emmited ");
 
         
         

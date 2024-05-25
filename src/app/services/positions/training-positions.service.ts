@@ -1,24 +1,34 @@
 import { Injectable } from '@angular/core';
-import { TrainingPosition } from '../app/interfaces/training-position';
-import { promises } from 'dns';
+import { TrainingPosition } from '../../interfaces/training-position';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { Observable, catchError, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TrainingPositionsService {
 
-  constructor() { }
+  constructor(private http:HttpClient) { }
 
-  url : string = "http://localhost:8080/trainingPositions" ; 
+  private baseUrl : string = "http://localhost:8080/trainingPositions" ; 
 
-  async getAllTrainingPositions(): Promise<TrainingPosition[]> {
-    const data = await fetch(this.url);
-    return await data.json() ?? [];
+  getAllTrainingPositions(): Observable<TrainingPosition[]> {
+
+    return this.http.get<TrainingPosition[]>(this.baseUrl).pipe(
+      catchError(this.handleError)
+    );
   }
 
-  async getTrainingPositionById(id: number): Promise<TrainingPosition> {
-    const data = await fetch(`${this.url}/${id}`);
-    return await data.json();
+  private handleError(error: HttpErrorResponse): Observable<never> {
+    // Handle the error here, e.g., log it or display a user-friendly message
+    console.error('An error occurred:', error.message);
+    return throwError('Something went wrong; please try again later.');
+  }
+
+  getTrainingPositionById(id: number): Observable<TrainingPosition> {
+    return this.http.get<TrainingPosition>(`${this.baseUrl}/${id}`).pipe(
+      catchError(this.handleError)
+    );
   }
 
   
