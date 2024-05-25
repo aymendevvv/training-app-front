@@ -19,13 +19,13 @@ import { RouterModule } from '@angular/router';
   selector: 'app-positions-search',
   standalone: true,
   imports: [ RouterModule,  CalendarModule ,  CheckboxModule ,  DropdownModule ,  SliderModule , FormsModule ,   CommonModule , TagModule,  DataViewModule ,  CardModule , ToolbarModule ,ButtonModule , InputTextModule],
-  providers: [TrainingPositionsService],
   templateUrl: './positions-search.component.html',
   styleUrl: './positions-search.component.css'
 })
 export class PositionsSearchComponent {
-  constructor(private T_positionsService: TrainingPositionsService){
-    this.T_positionsService.getAllTrainingPositions().subscribe((data) => (this.T_positions = data.slice(0, 5)));
+  
+  constructor(private trainingPositionsService: TrainingPositionsService){
+    
   }
 
   date !: Date ;
@@ -36,11 +36,12 @@ export class PositionsSearchComponent {
 
   value:number = 50  ; 
 
-  T_positions!: TrainingPosition[];
+  trainingPositions!: TrainingPosition[];
 
   ngOnInit() {
     // this.T_positionsService.getTrainingPositions().then((data) => (this.T_positions = data.slice(0, 5)));
-    
+    this.trainingPositionsService.getAllTrainingPositions().subscribe((data) => (this.trainingPositions = data.slice(0, 5)));
+  
     this.degrees = [
       'All',
       'Bachelors',

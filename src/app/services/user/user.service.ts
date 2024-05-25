@@ -14,4 +14,8 @@ export class UserService {
     return this.http.post('http://localhost:8080/users/new', user, { observe: 'response' }).pipe(
       map(res => res.status)
     );}
+
+  getAllUsers(): Observable<User[]> {
+    return this.http.get<User[]>('http://localhost:8080/users');
+  }
 }

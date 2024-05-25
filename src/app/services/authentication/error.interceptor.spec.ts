@@ -1,11 +1,11 @@
 import { TestBed } from '@angular/core/testing';
 import { HttpInterceptorFn } from '@angular/common/http';
 
-import { jwtInterceptor } from './jwt-interceptor.interceptor';
+import { errorInterceptor } from './error.interceptor';
 
-describe('jwtInterceptorInterceptor', () => {
+describe('errorInterceptor', () => {
   const interceptor: HttpInterceptorFn = (req, next) => 
-    TestBed.runInInjectionContext(() => jwtInterceptor(req, next));
+    TestBed.runInInjectionContext(() => errorInterceptor(req, next));
 
   beforeEach(() => {
     TestBed.configureTestingModule({});

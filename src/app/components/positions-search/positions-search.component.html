@@ -128,10 +128,10 @@
           <div class="card">
 
             
-            <p-dataView #dv [value]="T_positions">
+            <p-dataView #dv [value]="trainingPositions">
                 <ng-template pTemplate="list" let-products>
                     <div class="grid grid-nogutter">
-                        <div class="col-12" *ngFor="let item of T_positions; let first = first" class="col-12">
+                        <div class="col-12" *ngFor="let item of trainingPositions; let first = first" class="col-12">
                             <!-- div containing everything -->
                             <a [routerLink]="['/position', item.position_id]"  style="text-decoration: none;" >
                               <div class="flex flex-column sm:flex-row sm:align-items-center p-4 gap-3" [ngClass]="{ 'border-top-1 surface-border': !first }">

@@ -6,16 +6,19 @@ import { provideClientHydration } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { HttpClientModule, provideHttpClient, withFetch, withInterceptors } from '@angular/common/http';
 import { provideAnimations } from '@angular/platform-browser/animations';
-import { jwtInterceptorInterceptor } from './services/authentication/jwt-interceptor.interceptor';
+import { jwtInterceptor } from './services/authentication/jwt-interceptor.interceptor';
 import { CookieService } from 'ngx-cookie-service';
+import { errorInterceptor } from './services/authentication/error.interceptor';
 
 export const appConfig: ApplicationConfig = {
   providers: [
-    // provideClientHydration() ,
+    provideClientHydration() ,
+    CookieService, 
     provideRouter(routes), 
     provideAnimations(),
     provideHttpClient(withInterceptors([
-      jwtInterceptorInterceptor
+      jwtInterceptor ,
+      errorInterceptor
     ]))
 
     ]

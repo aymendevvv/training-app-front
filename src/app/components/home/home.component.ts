@@ -14,6 +14,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { CardModule } from 'primeng/card';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
+import { UserService } from '../../services/user/user.service';
 
 
 @Component({
@@ -25,8 +26,8 @@ import { HttpClient } from '@angular/common/http';
 })
 export class HomeComponent implements OnInit{
 
-    constructor(private route:Router  , private http:HttpClient){
-        this.http.get('http://localhost:8080/api/v1/positions').subscribe((data) => console.log(data));
+    constructor(private route:Router  , private usersService: UserService){
+        
     }
     
     items: MenuItem[] | undefined;
@@ -39,6 +40,8 @@ export class HomeComponent implements OnInit{
     }
 
     ngOnInit() {
+        this.usersService.getAllUsers().subscribe((data) => (console.log(data)));
+
         this.items = [
             {
                 label: 'Update',
