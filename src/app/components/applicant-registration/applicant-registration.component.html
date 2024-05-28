@@ -1,0 +1,178 @@
+<p-card header="resigter as applicant ">
+
+    
+    <form [formGroup]="applicantRegisterForm" (ngSubmit)="register()" >
+        
+        
+        
+        <div    fxLayout="column" fxLayoutAlign="space-around stretch" style="white-space: nowrap ;">
+            <span style="font-size: 1.5rem ; margin :20px" fxLayoutAlign="center center" routerLink="/register"  class="pi pi-arrow-circle-left" ></span>
+            
+            <p-stepper>
+                <p-stepperPanel header="basic">
+                    <ng-template  pTemplate="content" let-nextCallback="nextCallback" let-index="index" >
+                        
+                    <!-- username -->
+                        <div class="field">
+                            <p-floatLabel>
+                            <input pInputText id="username" class="w-full" formControlName="username"/>
+                            <label for="username">Username</label>
+                            </p-floatLabel>
+                            
+                            <small *ngIf="username.invalid && (username.dirty || username.touched)" class="block p-error">
+                                <div *ngIf="username.errors?.['required']"> username is required! </div>
+                            </small>    
+                        </div>
+                    <!-- email -->
+                        <div class="field">
+                        <p-floatLabel>
+                            <input pInputText id="email" class="w-full" formControlName="email"/>
+                            <label for="email">Email</label>
+                            </p-floatLabel>
+            
+                            <small *ngIf="email.invalid && (email.dirty || email.touched)" class="block p-error">
+                                <div *ngIf="email.errors?.['required']"> email is required! </div>
+                            </small>    
+                        </div>
+                    
+                    <!-- password -->
+                    
+                    <div class="field">
+                        <p-floatLabel>
+                            <input type="password" pInputText id="password" class="w-full" formControlName="password"/>
+                            <label for="password">Password</label>
+                        </p-floatLabel>
+                        <small *ngIf="password.invalid && (password.dirty || password.touched) " class="block p-error">
+                           <div *ngIf="password.errors?.['required']">Enter a valid password !</div>
+                        </small>
+                    </div>
+        
+                 <!-- password again -->
+                 
+                 <div class="field">
+                      <p-floatLabel>
+                          <input type="password" pInputText id="passwordAgain" class="w-full" formControlName="passwordAgain"/>
+                          <label for="passwordAgain">re-enter password</label>
+                        </p-floatLabel>   
+                        <small *ngIf=" password.value != passwordAgain.value " class="block p-error">
+           
+                            <div  *ngIf=" password.value != passwordAgain.value " > make sure the passwords match ! </div>
+                        </small>
+                    </div>
+
+                    <p-button 
+                    label="Next" 
+                    icon="pi pi-arrow-right" 
+                    iconPos="right" 
+                    (onClick)="nextCallback.emit()" />
+
+                    </ng-template>
+                </p-stepperPanel>
+
+
+                <p-stepperPanel header="personal">
+
+                    <ng-template  pTemplate="content" let-prevCallback="prevCallback" let-nextCallback="nextCallback" let-index="index" >
+                        <!-- fist name -->
+                        <div class="field">
+                            <p-floatLabel  >
+                                <input pInputText id="fistname" class="w-full" formControlName="firstName"/>
+                                <label for="fistname">First name</label>
+                            </p-floatLabel>
+
+                            <small *ngIf="firstName.invalid && (firstName.dirty || firstName.touched)" class="block p-error">
+                                <div *ngIf="firstName.errors?.['required']"> first Name is required! </div>
+                            </small>    
+                        </div>
+                        <!-- last name -->
+                        <div class="field">
+                            <p-floatLabel>
+                                <input pInputText id="lastname" class="w-full" formControlName="lastName"/>
+                                <label for="lastname">Last name</label>
+                            </p-floatLabel>
+                            
+                            <small *ngIf="lastName.invalid && (lastName.dirty || lastName.touched)" class="block p-error">
+                            <div *ngIf="lastName.errors?.['required']"> last name is required! </div>
+                            </small>    
+                        </div>
+                        <!-- date of birth -->
+                        
+                        <div class="field">
+                            <!-- <p-floatLabel>
+                                
+                            <p-calendar formControlName="dateOfBirth"/>
+                            <label for="dateofbirth">date of birth</label>
+                            </p-floatLabel> -->
+                            <p-floatLabel>
+                                
+                                <p-calendar id="calendar"  formControlName="dateOfBirth"   [style]="{'width':'100%' }" [inputStyle]="{'width':'100%'}" />
+                                <label for="calendar">Birth date</label>
+                                
+                            </p-floatLabel>
+                            <span class="p-float-label">
+                            </span>
+                            
+                            <small *ngIf="dateOfBirth.invalid && (dateOfBirth.dirty || dateOfBirth.touched)" class="block p-error">
+                                <div *ngIf="dateOfBirth.errors?.['required']"> date of birth is required! </div>
+                            </small>    
+                        </div>
+                        <!-- phone number -->
+                        
+                        <div class="field">
+                            
+                            
+                            <p-floatLabel>
+                                <input pInputText id="phonenumber" class="w-full" formControlName="phoneNumber"/>
+                                <label for="phonenumber">Phone number</label>
+                            </p-floatLabel>
+                            <small *ngIf="phoneNumber.invalid && (phoneNumber.dirty || phoneNumber.touched)" class="block p-error">
+                                <div *ngIf="phoneNumber.errors?.['required']"> phone number is required! </div>
+                            </small>
+                            
+                        </div>
+                        <div class="flex pt-4 justify-content-between">
+                            <p-button 
+                                label="Back" 
+                                icon="pi pi-arrow-left" 
+                                (onClick)="prevCallback.emit()" />
+                            <p-button 
+                                label="Next" 
+                                icon="pi pi-arrow-right" 
+                                iconPos="right" 
+                                (onClick)="nextCallback.emit()" />
+                        </div>
+                    </ng-template>
+                            
+                </p-stepperPanel>
+
+
+                <p-stepperPanel header="profile">
+                    <ng-template  pTemplate="content" let-prevCallback="prevCallback" let-index="index" >
+
+                        <app-profile-setup [userRole]="currentRole" ></app-profile-setup>
+
+                        <div class="flex pt-4 justify-content-between">
+                            <p-button 
+                                label="Back" 
+                                icon="pi pi-arrow-left" 
+                                (onClick)="prevCallback.emit()" />
+                            <p-button 
+                                label="register" 
+                                icon="pi pi-arrow-right" 
+                                iconPos="right" 
+                                (onClick)="register()" />
+                        </div>
+                    </ng-template>
+                    
+                </p-stepperPanel>
+                
+            </p-stepper>
+            
+            
+            
+        </div>
+        
+        
+        
+    </form>
+</p-card>

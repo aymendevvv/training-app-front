@@ -5,6 +5,8 @@ import { LoginComponent } from './components/login/login.component';
 import { PositionsSearchComponent } from './components/positions-search/positions-search.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { PositionDetailComponent } from './components/position-detail/position-detail.component';
+import { ApplicantRegistrationComponent } from './components/applicant-registration/applicant-registration.component';
+import { CompanyRegistrationComponent } from './components/company-registration/company-registration.component';
 
 export const routes: Routes = [
     {
@@ -13,7 +15,12 @@ export const routes: Routes = [
       },
       {
         path:"register",
-        component:RegisterComponent
+        component:RegisterComponent , 
+        children :[
+          {path:"applicant" , component: ApplicantRegistrationComponent } , 
+          {path:"company" , component: CompanyRegistrationComponent } , 
+          
+        ]
       },
       {
         path:"home",

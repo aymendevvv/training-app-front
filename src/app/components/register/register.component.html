@@ -5,217 +5,23 @@
 
 
 
-<p-card  [header]="headerTitle" 
+<p-card *ngIf="!selectedRole"  header="register" 
          [style]="{ 'width':'360px' ,  'overflow-y': 'auto', 'overflow-x': 'auto', 'max-height': '80vh','min-height':'250px' , 'white-space':'nowrap'}" 
           
          >
 
-     <div *ngIf="!selectedRole">
+     <div >
                
           <div fxLayout="row" fxLayoutAlign="center" fxLayoutGap="20px" >
 
-               <div class="choice"  fxLayout="column" fxLayoutAlign="center center"  (click)="pickRole('student')"><i class="pi pi-user" style="font-size: 2rem"></i><h5>student</h5></div>
-               <div class="choice" fxLayout="column" fxLayoutAlign="center center" (click)="pickRole('company')"><i class="pi pi-desktop" style="font-size: 2rem"></i><h6>company</h6></div>
+               <div class="choice"  fxLayout="column" fxLayoutAlign="center center" routerLink="applicant" (click)="pickRole('student')"><i class="pi pi-user" style="font-size: 2rem"></i><h5>student</h5></div>
+               <div class="choice" fxLayout="column" fxLayoutAlign="center center" routerLink="company" (click)="pickRole('company')"><i class="pi pi-desktop" style="font-size: 2rem"></i><h6>company</h6></div>
                
           </div>
   
      </div>
 
-     <form [formGroup]="studentRegisterForm" (ngSubmit)="register()" >
-
-
-          <div *ngIf="selectedRole ==='student' && !message"   fxLayout="column" fxLayoutAlign="space-around stretch" style="white-space: nowrap ;">
-
-               <span style="font-size: 1.5rem ; margin :20px" fxLayoutAlign="center center"   class="pi pi-arrow-circle-left" (click)="pickRole(undefined)"></span>
-               <!-- fist name -->
-               <div class="field">
-                    <p-floatLabel  >
-                         <input pInputText id="fistname" class="w-full" formControlName="firstName"/>
-                         <label for="fistname">First name</label>
-                     </p-floatLabel>
-     
-                    <small *ngIf="firstName.invalid && (firstName.dirty || firstName.touched)" class="block p-error">
-                         <div *ngIf="firstName.errors?.['required']"> first Name is required! </div>
-                    </small>    
-               </div>
-               <!-- last name -->
-               <div class="field">
-                    <p-floatLabel>
-                         <input pInputText id="lastname" class="w-full" formControlName="lastName"/>
-                         <label for="lastname">Last name</label>
-                     </p-floatLabel>
-     
-                    <small *ngIf="lastName.invalid && (lastName.dirty || lastName.touched)" class="block p-error">
-                         <div *ngIf="lastName.errors?.['required']"> last name is required! </div>
-                    </small>    
-               </div>
-               <!-- date of birth -->
-
-               <div class="field">
-                    <!-- <p-floatLabel>
-                         
-                         <p-calendar formControlName="dateOfBirth"/>
-                         <label for="dateofbirth">date of birth</label>
-                     </p-floatLabel> -->
-                     <p-floatLabel>
-                          
-                          <p-calendar id="calendar"  formControlName="dateOfBirth"   [style]="{'width':'100%' }" [inputStyle]="{'width':'100%'}" />
-                          <label for="calendar">Birth date</label>
-
-                     </p-floatLabel>
-                     <span class="p-float-label">
-                     </span>
-     
-                    <small *ngIf="dateOfBirth.invalid && (dateOfBirth.dirty || dateOfBirth.touched)" class="block p-error">
-                         <div *ngIf="dateOfBirth.errors?.['required']"> date of birth is required! </div>
-                    </small>    
-               </div>
-               <!-- username -->
-               <div class="field">
-                    <p-floatLabel>
-                         <input pInputText id="username" class="w-full" formControlName="username"/>
-                         <label for="username">Username</label>
-                     </p-floatLabel>
-     
-                    <small *ngIf="username.invalid && (username.dirty || username.touched)" class="block p-error">
-                         <div *ngIf="username.errors?.['required']"> username is required! </div>
-                    </small>    
-               </div>
-               
-               <!-- password -->
-
-               <div class="field">
-                    <p-floatLabel>
-                         <input type="password" pInputText id="password" class="w-full" formControlName="password"/>
-                         <label for="password">Password</label>
-                     </p-floatLabel>
-                    <small *ngIf="password.invalid && (password.dirty || password.touched) " class="block p-error">
-                         <div *ngIf="password.errors?.['required']">Enter a valid password !</div>
-                    </small>
-               </div>
-
-               <!-- password again -->
-
-               <div class="field">
-                    <p-floatLabel>
-                         <input type="password" pInputText id="passwordAgain" class="w-full" formControlName="passwordAgain"/>
-                         <label for="passwordAgain">re-enter password</label>
-                     </p-floatLabel>   
-                    <small *ngIf=" password.value != passwordAgain.value " class="block p-error">
-                         <div  *ngIf=" password.value != passwordAgain.value " > make sure the passwords match ! </div>
-                    </small>
-               </div>
-               <!-- email -->
-               <div class="field">
-                    <p-floatLabel>
-                         <input pInputText id="email" class="w-full" formControlName="email"/>
-                         <label for="email">Email</label>
-                     </p-floatLabel>
-     
-                    <small *ngIf="email.invalid && (email.dirty || email.touched)" class="block p-error">
-                         <div *ngIf="email.errors?.['required']"> email is required! </div>
-                    </small>    
-               </div>
-               <!-- phone number -->
-               
-               <div class="field">
-                    
-
-                    <p-floatLabel>
-                         <input pInputText id="phonenumber" class="w-full" formControlName="phoneNumber"/>
-                         <label for="phonenumber">Phone number</label>
-                         </p-floatLabel>
-                    <small *ngIf="phoneNumber.invalid && (phoneNumber.dirty || phoneNumber.touched)" class="block p-error">
-                         <div *ngIf="phoneNumber.errors?.['required']"> phone number is required! </div>
-                    </small>
-
-               </div>
-
-                    <p-button  type="submit" fxLayoutAlign="center center">submit</p-button>
-               </div>
-               <div *ngIf="message">
-                    <span style="font-size: 1.5rem ; margin :20px" fxLayoutAlign="center center"   class="pi pi-arrow-circle-left" (click)="pickRole(undefined)"></span>
-                    <p>{{message}}</p>
-               </div>
-
-
-
-     </form>
-
-     <form [formGroup]="companyRegisterForm">
-          <div *ngIf="selectedRole ==='company' && !message">
-               <form [formGroup]="companyRegisterForm">
-
-                    <span style="font-size: 1.5rem ; margin :20px" fxLayoutAlign="center center"   class="pi pi-arrow-circle-left" (click)="pickRole(undefined)"></span>
-                    
-                    
-                    <!-- username -->
-                    <div class="field">
-                         <p-floatLabel>
-                              <input pInputText id="companyname" class="w-full" formControlName="companyName"/>
-                              <label for="companyname">Company name</label>
-                          </p-floatLabel>
-          
-                         <small *ngIf="username.invalid && (username.dirty || username.touched)" class="block p-error">
-                              <div *ngIf="username.errors?.['required']"> username is required! </div>
-                         </small>    
-                    </div>
-                    
-                    <!-- password -->
-     
-                    <div class="field">
-                         <p-floatLabel>
-                              <input type="password" pInputText id="password" class="w-full" formControlName="password"/>
-                              <label for="password">Password</label>
-                          </p-floatLabel>
-                         <small *ngIf="password.invalid && (password.dirty || password.touched) " class="block p-error">
-                              <div *ngIf="password.errors?.['required']">Enter a valid password !</div>
-                         </small>
-                    </div>
-     
-                    <!-- password again -->
-     
-                    <div class="field">
-                         <p-floatLabel>
-                              <input type="password" pInputText id="passwordAgain" class="w-full" formControlName="passwordAgain"/>
-                              <label for="passwordAgain">re-enter password</label>
-                          </p-floatLabel>   
-                         <small *ngIf=" password.value != passwordAgain.value " class="block p-error">
-                              <div  *ngIf=" password.value != passwordAgain.value " > make sure the passwords match ! </div>
-                         </small>
-                    </div>
-                    <!-- email -->
-                    <div class="field">
-                         <p-floatLabel>
-                              <input pInputText id="email" class="w-full" formControlName="email"/>
-                              <label for="email">Email</label>
-                          </p-floatLabel>
-          
-                         <small *ngIf="email.invalid && (email.dirty || email.touched)" class="block p-error">
-                              <div *ngIf="email.errors?.['required']"> email is required! </div>
-                         </small>    
-                    </div>
-                    <!-- phone number -->
-                    
-                    <div class="field">
-                         
-     
-                         <p-floatLabel>
-                              <input pInputText id="phonenumber" class="w-full" formControlName="phoneNumber"/>
-                              <label for="phonenumber">Phone number</label>
-                              </p-floatLabel>
-                         <small *ngIf="phoneNumber.invalid && (phoneNumber.dirty || phoneNumber.touched)" class="block p-error">
-                              <div *ngIf="phoneNumber.errors?.['required']"> phone number is required! </div>
-                         </small>
-     
-                    </div>
-                    
-                         
-
-                    
-                </form>
-          </div>
-     </form>
 
      
 </p-card>
+<router-outlet (activate)="pickRole($event)" (deactivate)="pickRole(undefined)" ></router-outlet>

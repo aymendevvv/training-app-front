@@ -1,0 +1,159 @@
+<p-card header="resigter new Company">
+
+    
+     <form [formGroup]="companyRegisterForm" (ngSubmit)="registerCompany()" >
+         
+         
+         
+         <div class="flex-column justify-content-between"  >
+             <span style="font-size: 1.5rem ; margin :20px ; display: flex; justify-content: center;"  routerLink="/register"  class="pi pi-arrow-circle-left" ></span>
+             
+             <p-stepper>
+                 <p-stepperPanel header="basic">
+                     <ng-template  pTemplate="content" let-nextCallback="nextCallback" let-index="index" >
+ 
+                     <!-- username -->
+                     <div class="field">
+                         <p-floatLabel>
+                             <input pInputText id="username" class="w-full" formControlName="username"/>
+                             <label for="username">Username</label>
+                         </p-floatLabel>
+                         
+                         <small *ngIf="username.invalid && (username.dirty || username.touched)" class="block p-error">
+                             <div *ngIf="username.errors?.['required']"> username is required! </div>
+                         </small>    
+                     </div>
+
+                     
+                     <!-- email -->
+                     <div class="field">
+                         <p-floatLabel>
+                             <input pInputText id="email" class="w-full" formControlName="email"/>
+                             <label for="email">Email</label>
+                           </p-floatLabel>
+           
+                           <small *ngIf="email.invalid && (email.dirty || email.touched)" class="block p-error">
+                               <div *ngIf="email.errors?.['required']"> email is required! </div>
+                           </small>    
+                       </div>
+                     
+                     <!-- password -->
+                     
+                     <div class="field">
+                         <p-floatLabel>
+                             <input type="password" pInputText id="password" class="w-full" formControlName="password"/>
+                             <label for="password">Password</label>
+                         </p-floatLabel>
+                         <small *ngIf="password.invalid && (password.dirty || password.touched) " class="block p-error">
+                            <div *ngIf="password.errors?.['required']">Enter a valid password !</div>
+                         </small>
+                     </div>
+         
+                  <!-- password again -->
+                  
+                  <div class="field">
+                       <p-floatLabel>
+                           <input type="password" pInputText id="passwordAgain" class="w-full" formControlName="passwordAgain"/>
+                           <label for="passwordAgain">re-enter password</label>
+                         </p-floatLabel>   
+                         <small *ngIf=" password.value != passwordAgain.value " class="block p-error">
+            
+                             <div  *ngIf=" password.value != passwordAgain.value " > make sure the passwords match ! </div>
+                         </small>
+                     </div>
+
+                     <div class="flex justify-content-end">
+                          <p-button 
+                          label="Next" 
+                          icon="pi pi-arrow-right" 
+                          iconPos="right" 
+                          (onClick)="nextCallback.emit()" />
+                         </div>
+ 
+                     </ng-template>
+                 </p-stepperPanel>
+ 
+ 
+                 <p-stepperPanel header="details">
+ 
+                     <ng-template  pTemplate="content" let-prevCallback="prevCallback" let-nextCallback="nextCallback" let-index="index" >
+                         <!-- fist name -->
+                         <div class="field">
+                             <p-floatLabel  >
+                                 <input pInputText id="companylabel" class="w-full" formControlName="compLabel"/>
+                                 <label for="companylabel">First name</label>
+                             </p-floatLabel>
+ 
+                             <small *ngIf="compLabel.invalid && (compLabel.dirty || compLabel.touched)" class="block p-error">
+                                 <div *ngIf="compLabel.errors?.['required']"> label is required </div>
+                             </small>    
+                         </div>
+                         
+                         <!-- date of birth -->
+                         
+                         <div class="field">
+                             <!-- <p-floatLabel>
+                                 
+                             <p-calendar formControlName="dateOfBirth"/>
+                             <label for="dateofbirth">date of birth</label>
+                             </p-floatLabel> -->
+                             <p-floatLabel>
+                                 
+                                 <p-calendar id="calendar"  formControlName="compCreationDate"   [style]="{'width':'100%' }" [inputStyle]="{'width':'100%'}" />
+                                 <label for="calendar">company creation date</label>
+                                 
+                             </p-floatLabel>
+                             <span class="p-float-label">
+                             </span>
+                             
+                             <small *ngIf="compCreationDate.invalid && (compCreationDate.dirty || compCreationDate.touched)" class="block p-error">
+                                 <div *ngIf="compCreationDate.errors?.['required']"> date of birth is required! </div>
+                             </small>    
+                         </div>
+                         
+                         <div class="flex pt-4 justify-content-between">
+                             <p-button 
+                                 label="Back" 
+                                 icon="pi pi-arrow-left" 
+                                 (onClick)="prevCallback.emit()" />
+                             <p-button 
+                                 label="Next" 
+                                 icon="pi pi-arrow-right" 
+                                 iconPos="right" 
+                                 (onClick)="nextCallback.emit()" />
+                         </div>
+                     </ng-template>
+                             
+                 </p-stepperPanel>
+ 
+ 
+                 <p-stepperPanel header="profile">
+                     <ng-template  pTemplate="content" let-prevCallback="prevCallback" let-index="index" >
+ 
+                         <app-profile-setup [userRole]="currentRole" ></app-profile-setup>
+ 
+                         <div class="flex pt-4 justify-content-between">
+                             <p-button 
+                                 label="Back" 
+                                 icon="pi pi-arrow-left" 
+                                 (onClick)="prevCallback.emit()" />
+                             <p-button 
+                                 label="register" 
+                                 iconPos="right" 
+                                 (onClick)="registerCompany()" />
+                         </div>
+                     </ng-template>
+                     
+                 </p-stepperPanel>
+                 
+             </p-stepper>
+             
+             
+             
+         </div>
+         
+         
+         
+     </form>
+ </p-card>
+

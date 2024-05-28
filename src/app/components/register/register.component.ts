@@ -47,7 +47,7 @@ export class RegisterComponent {
 
   
 
-  studentRegisterForm = this.fb.group({
+  applicantRegisterForm = this.fb.group({
 
     firstName:[undefined,[Validators.required]],
     lastName:[undefined,[Validators.required]],
@@ -72,63 +72,15 @@ export class RegisterComponent {
   });
 
   pickRole(role:string|undefined):void{
+    console.log(`this.selectedRole = ${role}`); 
     this.selectedRole =  role ;
-    if(role === 'company'){
-      this.headerTitle = "Register as a Company" ;
-    }else if(role === 'student'){  
-      this.headerTitle = "Register as a Student" ;
-    }else{
-      this.headerTitle = "Register as  :" ;
-      this.message = undefined  ; 
-    }
   }
 
-  get companyName(){
-    return this.companyRegisterForm.controls['companyName'];
-  }
   
 
-
-  get username(){
-    return this.studentRegisterForm.controls['username'];
-  }
-
-  get password(){
-    return this.studentRegisterForm.controls['password'];
-  }
-  get passwordAgain(){  
-    return this.studentRegisterForm.controls['passwordAgain'];
-  }
-  get phoneNumber(){
-    return this.studentRegisterForm.controls['phoneNumber'];
-  } 
-
-  get firstName() {
-    return this.studentRegisterForm.controls['firstName'];
-  }
-  
-  get lastName() {
-    return this.studentRegisterForm.controls['lastName'];
-  }
-  
-  get dateOfBirth() {
-    return this.studentRegisterForm.controls['dateOfBirth'];
-  }
-  
-
-  
-  get email() {
-    return this.studentRegisterForm.controls['email'];
-  }
-  
- 
-  
-  get profile() {
-    return this.studentRegisterForm.controls['profile'];
-  }
 
   createUserFromForm(): User {
-        let formValues = this.studentRegisterForm.value;
+        let formValues = this.applicantRegisterForm.value;
         let user:User  = {
           user_id: 0 , 
           username: formValues.username || null,
@@ -145,7 +97,7 @@ export class RegisterComponent {
       
 
       register(){
-        if(this.studentRegisterForm.valid){
+        if(this.applicantRegisterForm.valid){
           let user = this.createUserFromForm();
           this.userService.save_user(user).subscribe((status: number) => {
             

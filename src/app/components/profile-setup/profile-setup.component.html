@@ -1,0 +1,50 @@
+<div class="d-grid gap-5 " *ngIf="userRole=='APPLICANT'">
+    <p-toast></p-toast>
+
+    <div>
+
+        <p-dropdown 
+        [options]="degrees" 
+        [(ngModel)]="selectedDegree" 
+        optionLabel="name"
+        placeholder="Select a level" />
+    </div>
+
+    <div>
+
+        <h5> uplaod degrees </h5>
+        <p-fileUpload 
+        mode="basic" 
+        name="demo[]" 
+        chooseIcon="pi pi-upload" 
+        url="https://www.primefaces.org/cdn/api/upload.php" 
+        accept="image/*" maxFileSize="1000000" 
+        (onUpload)="onBasicUploadAuto($event)" 
+        chooseLabel="Browse" />
+        
+    </div>
+    <div>
+
+        <h5> uplaod degrees </h5>
+        <p-fileUpload 
+        mode="basic" 
+        name="demo[]" 
+        chooseIcon="pi pi-upload" 
+        url="https://www.primefaces.org/cdn/api/upload.php" 
+        accept="image/*" maxFileSize="1000000" 
+        (onUpload)="onBasicUploadAuto($event)" 
+        chooseLabel="Browse" />
+        
+    </div>
+    
+
+
+                            
+</div>
+<div class="d-grid gap-5 " *ngIf="userRole=='COMPANY'">
+    <h3>company profile setup </h3>
+    
+
+
+                            
+</div>
