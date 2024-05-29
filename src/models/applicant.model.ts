@@ -10,15 +10,15 @@ interface ApplicantProfile {
     // Define the structure of ApplicantProfile here
 }
 export class Applicant {
-  username!: string;
-  password!: string;
-  email!: string;
-  applicantFirstname!: string;
-  applicantLastname!: string;
-  userPhoneNumber!: string;
-  userJoinDate!: Date;
-  applicantBirthday!: Date;
-  notifications: Notification[] = [];
+  username!: string | null;
+  password!: string | null;
+  email!: string | null;
+  applicantFirstname!: string | null;
+  applicantLastname!: string | null;
+  userPhoneNumber!: string | null;
+  userJoinDate!: Date | null;
+  applicantBirthday!: Date | null ;
+  notifications: Notification[] = [] ;
   alerts: Alert[] = [];
   applicantProfile: ApplicantProfile | null = null;
 }

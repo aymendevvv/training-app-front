@@ -1,12 +1,13 @@
 <p-card header="resigter as applicant ">
+    <p-toast></p-toast>
 
     
-    <form [formGroup]="applicantRegisterForm" (ngSubmit)="register()" >
+    <form [formGroup]="applicantRegisterForm"  >
         
         
         
         <div    fxLayout="column" fxLayoutAlign="space-around stretch" style="white-space: nowrap ;">
-            <span style="font-size: 1.5rem ; margin :20px" fxLayoutAlign="center center" routerLink="/register"  class="pi pi-arrow-circle-left" ></span>
+            <span style="font-size: 1.5rem ; margin :20px ; display: flex; justify-content: center;" fxLayoutAlign="center center" routerLink="/register"  class="pi pi-arrow-circle-left" ></span>
             
             <p-stepper>
                 <p-stepperPanel header="basic">
@@ -60,11 +61,13 @@
                         </small>
                     </div>
 
-                    <p-button 
-                    label="Next" 
-                    icon="pi pi-arrow-right" 
-                    iconPos="right" 
-                    (onClick)="nextCallback.emit()" />
+                    <div class="flex justify-content-end">
+                        <p-button 
+                        label="Next" 
+                        icon="pi pi-arrow-right" 
+                        iconPos="right" 
+                        (onClick)="nextCallback.emit()" />
+                       </div>
 
                     </ng-template>
                 </p-stepperPanel>
@@ -158,9 +161,8 @@
                                 (onClick)="prevCallback.emit()" />
                             <p-button 
                                 label="register" 
-                                icon="pi pi-arrow-right" 
                                 iconPos="right" 
-                                (onClick)="register()" />
+                                (onClick)="registerApplicant()" />
                         </div>
                     </ng-template>
                     

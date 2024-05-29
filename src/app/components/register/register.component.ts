@@ -96,19 +96,19 @@ export class RegisterComponent {
       }
       
 
-      register(){
-        if(this.applicantRegisterForm.valid){
-          let user = this.createUserFromForm();
-          this.userService.save_user(user).subscribe((status: number) => {
-            
-            console.log(status);
-            if(status == 200){
-              this.message = "successfully registered" ;
-            }else{
-              this.message = "failed to register" ; 
-            }
-          });
-        }
-        console.log('registered');
+    register(){
+      if(this.applicantRegisterForm.valid){
+        let user = this.createUserFromForm();
+        this.userService.save_user(user).subscribe((status: number) => {
+          
+          console.log(status);
+          if(status == 200){
+            this.message = "successfully registered" ;
+          }else{
+            this.message = "failed to register" ; 
+          }
+        });
       }
+      console.log('registered');
+    }
     }

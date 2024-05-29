@@ -27,6 +27,7 @@ export class AuthService {
         this.loggedInStatus = true ; 
         this.cookieService.set('jwt_token', res.token);
         console.log(`your token is ${res.token}`)
+        this.decodeAndLogJWT(res.token);
       })
     );
   }
@@ -38,6 +39,28 @@ export class AuthService {
 
   getToken():string | null {
     return localStorage.getItem('jwtToken') ;
+  }
+
+  decodeAndLogJWT(token: string): void {
+    try {
+      const decodedToken = jwtDecode(token);
+
+      const tokenArray = [];
+
+      
+
+      console.log('Decoded JWT:', decodedToken);
+    } catch (error) {
+      console.error('Invalid token', error);
+    }
+
+  }
+  getRole(){
+    const token = this.getToken();
+    if(token){
+      const decodedToken = jwtDecode(token);
+    }
+    return null;
   }
 
   isTokenExpired(token:string):boolean{

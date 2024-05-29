@@ -14,6 +14,11 @@ import { CardModule } from 'primeng/card';
 import { DropdownModule } from 'primeng/dropdown';
 import { ProfileSetupComponent } from '../profile-setup/profile-setup.component';
 import { Applicant } from '../../../models/applicant.model';
+import { ApplicantRegistration } from '../../interfaces/applicant-registration';
+import { ToastModule } from 'primeng/toast';
+import { MessageService } from 'primeng/api';
+import { catchError, throwError } from 'rxjs';
+import { HttpErrorResponse } from '@angular/common/http';
 
 interface Degree {
   name: string;
@@ -25,14 +30,15 @@ interface Degree {
 @Component({
   selector: 'app-applicant-registration',
   standalone: true,
-  imports: [ ProfileSetupComponent ,  FormsModule ,  CardModule,  StepperModule  ,  ReactiveFormsModule , FloatLabelModule , ButtonModule  ,CommonModule , RouterLink , CalendarModule , InputTextModule],
+  imports: [ ToastModule ,  ProfileSetupComponent ,  FormsModule ,  CardModule,  StepperModule  ,  ReactiveFormsModule , FloatLabelModule , ButtonModule  ,CommonModule , RouterLink , CalendarModule , InputTextModule],
+  providers:[MessageService] , 
   templateUrl: './applicant-registration.component.html',
   styleUrl: './applicant-registration.component.css'
 })
 
 export class ApplicantRegistrationComponent implements OnInit , OnDestroy{
 
-  constructor(private fb : FormBuilder , private userService : UserService){}
+  constructor(private fb : FormBuilder , private userService : UserService  , private messageService :MessageService , private router:Router){}
 
   @Output() role  = new EventEmitter<any>(); 
 
@@ -50,7 +56,7 @@ export class ApplicantRegistrationComponent implements OnInit , OnDestroy{
   }
   applicantRegisterForm = this.fb.group({
 
-    firstName:[undefined,[Validators.required]],
+    firstName: [undefined,[Validators.required]],
     lastName:[undefined,[Validators.required]],
     dateOfBirth:[undefined,[Validators.required ] ],
     username:[undefined,[Validators.required]],
@@ -97,37 +103,54 @@ export class ApplicantRegistrationComponent implements OnInit , OnDestroy{
     return this.applicantRegisterForm.controls['email'];
   }
   
-  register(){
+  registerApplicant(){
     if(this.applicantRegisterForm.valid){
-
-      let applicant  = new Applicant() ;
+      const formValue = this.applicantRegisterForm.value;
       
-      // applicant = this.ApplicantFromForm();
-      // this.userService.save_user(applicant).subscribe((status: number) => {
-        
-      //   console.log(status);
-        
-      // });
+      const applicant:ApplicantRegistration = {
+        username: formValue.username ,
+        password: formValue.password , 
+        email: formValue.email , 
+        Applicant_firstname: formValue.firstName , 
+        Applicant_lastname: formValue.lastName , 
+        user_phone_number: formValue.phoneNumber , 
+        user_join_date: new Date().toISOString() , 
+        Applicant_birthday: formValue.dateOfBirth , 
+        notifications: null , 
+        alerts: null , 
+        applicantProfile: null , 
+      }
+      
+
+      this.userService.save_applicant(applicant).pipe(
+        catchError((error: HttpErrorResponse) => {
+            let errorMessage = 'An unknown error occurred!';
+            if (error.error instanceof ErrorEvent) {
+              
+                errorMessage = `Error: ${error.error.message}`;
+            } else {
+              
+                errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
+            }
+            this.messageService.add({severity: 'error', summary: 'Server side error', detail: ' something went wrong '});
+            return throwError(()=>error);
+        })
+    ).subscribe((status: number) => {
+          
+        console.log(status);
+        if(status == 200){
+          this.messageService.add({severity: 'success', summary: 'Success', detail: 'new user registered successfully'})
+          setTimeout(() => {
+            this.router.navigate(["/login"]);
+          }, 3000);
+        }else{
+          
+          this.messageService.add({severity: 'error', summary: 'Fail', detail: ' user registeration failed'})
+        }
+      });
     }
-    console.log('registered');
   }
 
-  ApplicantFromForm() {
-    let formValues = this.applicantRegisterForm.value;
-    let applicant = {
-      username: formValues.username,
-      password: formValues.password,
-      email: formValues.email,
-      applicantFirstname: formValues.firstName,
-      applicantLastname: formValues.lastName,
-      userPhoneNumber: formValues.phoneNumber,
-      userJoinDate: new Date(), // Assuming the join date is the current date
-      applicantBirthday: formValues.dateOfBirth,
-      notifications: [],
-      alerts: [],
-      applicantProfile: null
-    };
-    return applicant;
-  }
+  
   
 }

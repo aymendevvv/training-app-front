@@ -1,5 +1,5 @@
 <p-card header="resigter new Company">
-
+    <p-toast></p-toast>
     
      <form [formGroup]="companyRegisterForm" (ngSubmit)="registerCompany()" >
          
@@ -81,7 +81,7 @@
                          <div class="field">
                              <p-floatLabel  >
                                  <input pInputText id="companylabel" class="w-full" formControlName="compLabel"/>
-                                 <label for="companylabel">First name</label>
+                                 <label for="companylabel">company label</label>
                              </p-floatLabel>
  
                              <small *ngIf="compLabel.invalid && (compLabel.dirty || compLabel.touched)" class="block p-error">
@@ -110,6 +110,21 @@
                                  <div *ngIf="compCreationDate.errors?.['required']"> date of birth is required! </div>
                              </small>    
                          </div>
+
+                         <!-- phone number -->
+                        
+                        <div class="field">
+                            
+                            
+                            <p-floatLabel>
+                                <input pInputText id="phonenumber" class="w-full" formControlName="phoneNumber"/>
+                                <label for="phonenumber">Phone number</label>
+                            </p-floatLabel>
+                            <small *ngIf="phoneNumber.invalid && (phoneNumber.dirty || phoneNumber.touched)" class="block p-error">
+                                <div *ngIf="phoneNumber.errors?.['required']"> phone number is required! </div>
+                            </small>
+                            
+                        </div>
                          
                          <div class="flex pt-4 justify-content-between">
                              <p-button 

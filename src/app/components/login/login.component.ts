@@ -8,7 +8,7 @@ import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { AuthService} from '../../services/authentication/auth.service';
 //import { HttpClientModule } from '@angular/common/http';
-
+import { JWTparser } from '../../services/authentication/jwtparser';
 
 
 @Component({
@@ -22,6 +22,7 @@ export class LoginComponent {
 
   @Output() loggedIn: EventEmitter<boolean> = new EventEmitter<boolean>();
   @Output() loggeduser: EventEmitter<string>  = new EventEmitter<string>();
+  @Output() userType: EventEmitter<string>  = new EventEmitter<string>();
 
 
   loginError: string = '' ; 
@@ -60,9 +61,24 @@ export class LoginComponent {
 
       this.authService.login(username, password).subscribe(
         res => {
-          console.log(res);
-          this.loggeduser.emit("aymen");
-          this.loggedIn.emit(true);
+          
+          try{
+            console.log("parsing the token : "); 
+            let tokenJson = JSON.parse(atob(res.token.split('.')[1]));  
+            console.log(tokenJson);
+            
+            let role:string = tokenJson.roles[0]["authority"];
+            let username:string = tokenJson.sub; 
+            
+            this.loggeduser.emit(username);
+            this.userType.emit(role); 
+            this.loggedIn.emit(true);
+            console.log(`user : ${username} is logged in as ${role}`);
+
+          }catch (e){
+            this.loggedIn.emit(false);
+            console.error("error parsing the token") ; 
+          }
 
         
         
